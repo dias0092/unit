@@ -4,10 +4,12 @@ from pytest_factoryboy import register
 from tests.factories import UserFactory
 
 
-register(UserFactory)
+@pytest.fixture
+def user_factory():
+    return UserFactory
 
 @pytest.fixture
-def new_user(db, user_factory):
+def create_user(db, user_factory):
     user = user_factory.create()
     return user
 
